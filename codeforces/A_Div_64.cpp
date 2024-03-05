@@ -119,7 +119,19 @@ mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 void galat_Karam()
 {
     string s;
-    cin>>s;
+    cin >> s;
+    int n = s.length();
+    int c = 0;
+    int f = 0;
+    for (int i = 0; i < n; i++)
+    {
+        if (s[i] == '1')
+            f = 1;
+        else if (s[i] == '0' && f)
+            c++;
+    }
+    if(c>=6){yes;}
+    else {no;}
 }
 
 int32_t main()
@@ -129,7 +141,7 @@ int32_t main()
     cin.tie(0);
     // w(t)
     // {
-        galat_Karam();
+    galat_Karam();
     // }
 
     auto end = std::chrono::high_resolution_clock::now();
