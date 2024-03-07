@@ -126,6 +126,8 @@ void galat_Karam()
     {
         cin >> a[i];
     }
+    /* to aaj ki majdoori mein hmne ye sikha ki agar hme lagatar koi min_element chahiye rehte hai to hmme deque ka ya min_heap ka use karna chahiye
+     */
     for (int i = 0, x; i < n; i++)
     {
         cin >> x;
