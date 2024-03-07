@@ -118,6 +118,27 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 void galat_Karam()
 {
+    string s;
+    cin >> s;
+    int n;
+    cin >> n;
+    set<char> st;
+
+    for (auto it : s)
+    {
+        st.insert(it);
+    }
+
+    int sz = st.size();
+
+    if ( n>s.length())
+    {
+        cout << "impossible" << endl;
+    }
+    else
+    {
+        cout << max(0,n-sz)<< endl;
+    }
 }
 
 int32_t main()
@@ -125,10 +146,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    w(t)
-    {
-        galat_Karam();
-    }
+    // w(t)
+    // {
+    galat_Karam();
+    // }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);

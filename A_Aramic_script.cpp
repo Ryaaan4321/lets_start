@@ -116,8 +116,47 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
+bool check(string s)
+{
+    for (int i = 1; i < s.size(); i++)
+    {
+        if (s[i] == s[i - 1])
+            return false;
+    }
+    return true;
+};
 void galat_Karam()
 {
+    // int n;
+    // cin >> n;
+    // set<set<char>> stt;
+    // for (int i = 0; i < n; i++)
+    // {
+    //     string str;
+    //     cin >> str;
+    //     set<char> temp;
+
+    //     for (int j = 0; j < str.length(); j++)
+    //     {
+    //         stt.insert(temp);
+    //     }
+    // }
+    // cout << stt.size() << endl;
+    set<set<char>> sett;
+    int n, i, j;
+    cin >> n;
+    for (i = 0; i < n; i++)
+    {
+        string str;
+        cin >> str;
+        set<char> temp;
+        for (j = 0; j < str.length(); j++)
+        {
+            temp.insert(str[j]);
+        }
+        sett.insert(temp);
+    }
+    cout << sett.size();
 }
 
 int32_t main()
@@ -125,10 +164,10 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    w(t)
-    {
-        galat_Karam();
-    }
+    // w(t)
+    // {
+    galat_Karam();
+    // }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);

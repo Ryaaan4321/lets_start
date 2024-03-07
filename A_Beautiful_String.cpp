@@ -118,6 +118,9 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
 void galat_Karam()
 {
+    string s;
+    cin >> s;
+    
 }
 
 int32_t main()
