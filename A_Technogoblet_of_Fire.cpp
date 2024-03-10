@@ -116,47 +116,8 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
-const int maxN = 1e5 + 5;
-char s[maxN];
-int n;
-
 void galat_Karam()
 {
-    cin >> (s + 1);
-    n = strlen(s + 1);
-
-    int okbro = 1;
-
-    for (int i = 1; i <= n; i++)
-    {
-        if (s[i] == '?')
-        {
-            if (s[i - 1] != 'a' && s[i + 1] != 'a')
-                s[i] = 'a';
-            else if (s[i - 1] != 'b' && s[i + 1] != 'b')
-                s[i] = 'b';
-            else if (s[i - 1] != 'c' && s[i + 1] != 'c')
-                s[i] = 'c';
-        }
-        else
-        {
-            if (s[i] == s[i - 1])
-            {
-                okbro = 0;
-                break;
-            }
-        }
-    }
-    if (!okbro)
-    {
-        puts("-1");
-    }
-    else
-    {
-        for (int i = 1; i <= n; i++)
-            cout << s[i];
-        cout << '\n';
-    }
 }
 
 int32_t main()
@@ -174,6 +135,3 @@ int32_t main()
     // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
 }
-
-
-

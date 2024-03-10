@@ -116,47 +116,24 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 */
 
 mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
-const int maxN = 1e5 + 5;
-char s[maxN];
-int n;
+template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
+template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
+template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
+
+
+int a[] = {0, 1, 2, 2, 1};
+int b[] = {1, 0, 0, 1, 2, 2};
+int c[] = {2, 2, 1, 0, 0, 1};
 
 void galat_Karam()
 {
-    cin >> (s + 1);
-    n = strlen(s + 1);
+    int n,x;
+    cin>>n>>x;
 
-    int okbro = 1;
 
-    for (int i = 1; i <= n; i++)
-    {
-        if (s[i] == '?')
-        {
-            if (s[i - 1] != 'a' && s[i + 1] != 'a')
-                s[i] = 'a';
-            else if (s[i - 1] != 'b' && s[i + 1] != 'b')
-                s[i] = 'b';
-            else if (s[i - 1] != 'c' && s[i + 1] != 'c')
-                s[i] = 'c';
-        }
-        else
-        {
-            if (s[i] == s[i - 1])
-            {
-                okbro = 0;
-                break;
-            }
-        }
-    }
-    if (!okbro)
-    {
-        puts("-1");
-    }
-    else
-    {
-        for (int i = 1; i <= n; i++)
-            cout << s[i];
-        cout << '\n';
-    }
+    if(b[n%6]==x){cout<<"1"<<endl;}
+    else if(c[n%6]==x){cout<<"2"<<endl;}
+    else cout<<"0"<<endl;
 }
 
 int32_t main()
@@ -164,16 +141,14 @@ int32_t main()
     auto begin = std::chrono::high_resolution_clock::now();
     ios_base::sync_with_stdio(0);
     cin.tie(0);
-    w(t)
-    {
-        galat_Karam();
-    }
+    // w(t)
+    // {
+    galat_Karam();
+    // }
 
     // auto end = std::chrono::high_resolution_clock::now();
     // auto elapsed = std::chrono::duration_cast<std::chrono::nanoseconds>(end - begin);
     // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
 }
-
-
 
