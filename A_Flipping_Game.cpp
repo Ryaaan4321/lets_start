@@ -41,8 +41,9 @@ Ostream &operator<<(Ostream &os, const pair<Ts...> &p)
 #define Integer_MIN_VALUE 0x80000000
 #define Long_MAX_VALUE 0x7fffffffffffffffL
 #define Long_MIN_VALUE 0x8000000000000000L
-#define yes cout << "YES" << endl;
-#define no cout << "NO" << endl;
+#define yes cout << "YES" << endl
+#define no cout << "NO" << endl
+#define all(a) (a).begin(), (a).end()
 #define w(t)  \
     int t;    \
     cin >> t; \
@@ -83,7 +84,7 @@ inline ll nC2(ll n)
 {
     return ((n * (n - 1)) / 2);
 }
-inline ll binary_exP(ll a, ll b)
+inline ll binary_exP(ll a, ll b) 
 {
     ll ans = 1;
     while (b)
@@ -94,7 +95,7 @@ inline ll binary_exP(ll a, ll b)
         }
         a = a * a % mod;
         b >> 1;
-        /* code */
+        
     }
     return ans;
 }
@@ -120,62 +121,30 @@ template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
 template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
 template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
 
-ll a[100100];
-ll as[100100];
-ll bs[100100];
-ll n;
+
 void galat_Karam()
 {
+    int n;
     cin>>n;
-    for(int i=1;i<=n;i++){
+    vi a(n);
+    for(int i=0;i<n;i++){
         cin>>a[i];
     }
-    /*prefix sum for the 1st condition*/
-    for(int i=1;i<=n;i++){
-        as[i]=as[i-1]+a[i];
-    }/*prefix sum for the 2nd condtiton*/
-    sort(a+1,a+1+n);
-    for(int i=1;i<=n;i++){
-        bs[i]=bs[i-1]+a[i];
-    }
-/*
-a = {2, 3, 1, 5, 4}
-as[] = {0, 2, 5, 6, 11, 15}
-bs[] = {0, 1, 3, 5, 7, 9}
-
-
-t = 1, l = 2, r = 4:
-
-for t,t is 1, which means we need to find the sum of elements from index l to 
-index r in the original array a.
-l = 2 and r = 4, so we need to find the sum of elements from index 2 to index 4 in array a.
-Using prefix sums: as[r] - as[l-1] = as[4] - as[1] = 11 - 2 = 9.
-So, the sum of elements from index 2 to index 4 in the original array a is 9.
-
-
-t = 2, l = 1, r = 3:
-
-For t, t is not 1, which means we need to find the sum of elements from index
-l to index r in the sorted array a.
-l = 1 and r = 3, so we need to find the sum of elements from index 1 to index 3 in the sorted array a.
-Using prefix sums: bs[r] - bs[l-1] = bs[3] - bs[0] = 5 - 0 = 5.
-So, the sum of elements from index 1 to index 3 in the sorted array a is 5.
-
-*/
-
-    ll q,t,l,r;
-    cin>>q;
-    while (q--)
-    {
-        cin>>t>>l>>r;
-        if(t==1){
-            cout<<as[r]-as[l-1]<<endl;
-        }else{
-            cout<<bs[r]-bs[l-1]<<endl;
+    auto get=[&](int i , int j, vector<int> a){
+        for(int k=i;k<=j;k++){
+            a[k]^=1;
         }
-        /* code */
+        return accumulate(all(a),0);
+    };
+    int mx=0;
+    for(int i=0;i<n;i++){
+        for(int j=i;j<n;j++){
+            mx=max(mx,get(i,j,a));
+
+        }
     }
-}
+    cout<<mx<<endl;
+};
 
 int32_t main()
 {
