@@ -70,80 +70,39 @@ template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
 template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
 template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
 
+
+
 void galat_Karam()
 {
-    int n;cin>>n;
-    int k;cin>>k;
-    vector<int> a(2 * n);
-	for (int &i : a) cin >> i;
-    vi aa;
-    vi bb;
-    for(int i=0;i<n;i++){aa.push_back(a[i]);}
-    for(int i=n;i<2*n;i++){bb.push_back(a[i]);}
-
-    sort(aa.begin(),aa.end());
-    sort(bb.begin(),bb.end());
-
-    map<int,int>ma;
-    map<int,int>mb;
+    int n;
+    cin>>n;
+    vi a(n);
     for(int i=0;i<n;i++){
-        ma[aa[i]]++;
-        mb[bb[i]]++;
+        cin>>a[i];
     }
-   vi ans_a;
-
-
-    for(auto it:ma){
-        if(it.second==2){
-            ans_a.push_back(it.first);
-            ans_a.push_back(it.first);
-            if(ans_a.size()==2*k){
-                break;
-            }
-            
+    ll sum=0;
+    for(int i=0;i<n;i++){
+        sum+=abs(a[i]);
+    }
+    vi b;
+    for(int i=0;i<n;i++){
+        if(a[i]){
+            b.push_back(a[i]);
         }
     }
-    vi ans_b;
-    for(auto it:mb){
-        if(it.second==2){
-            ans_b.push_back(it.first);
-            ans_b.push_back(it.first);
-            if(ans_b.size()==2*k){
-                break;
-            }
+    a=b;
+    n=a.size();
+    ll cnt=0,ans=0;
+    for(int i=0;i<n;i++){
+        if(a[i]>0){
+            ans+=cnt;
+            cnt=0;
+        }else{
+            cnt=1;
         }
     }
-    if(ans_a.size()==2*k && ans_b.size()==2*k){
-        for(auto it:ans_a){
-            cout<<it<<" ";
-            cout<<endl;
-        }
-        for(auto it:ans_b){
-            cout<<it<<" ";
-            cout<<endl;
-        }
-        return;
-    }
-    for(auto it:ma){
-        if(it.second==1){
-            ans_a.push_back(it.first);
-            ans_b.push_back(it.first);
-            if(ans_a.size()==2*k){
-                break;
-            }
-        }
-    }
-    for(auto it:ans_a){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-
-    for(auto it:ans_b){
-        cout<<it<<" ";
-    }
-    cout<<endl;
-
-
+    ans+=cnt;
+    cout<<sum<< " " <<ans<<'\n';
    
 };
 
@@ -162,17 +121,6 @@ int32_t main()
     // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

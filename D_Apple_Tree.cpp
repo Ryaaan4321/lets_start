@@ -37,6 +37,7 @@ const ll MAX = 2e5 + 7;
 typedef vector<pair<int, int>> vpi;
 typedef vector<int> vi;
 typedef vector<long long> vl;
+typedef vector<long long , int>vli;
 typedef vector<char> vch;
 typedef vector<vi> vvi;
 inline ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; }
@@ -70,79 +71,52 @@ template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
 template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
 template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
 
+
+
 void galat_Karam()
 {
-    int n;cin>>n;
-    int k;cin>>k;
-    vector<int> a(2 * n);
-	for (int &i : a) cin >> i;
-    vi aa;
-    vi bb;
-    for(int i=0;i<n;i++){aa.push_back(a[i]);}
-    for(int i=n;i<2*n;i++){bb.push_back(a[i]);}
-
-    sort(aa.begin(),aa.end());
-    sort(bb.begin(),bb.end());
-
-    map<int,int>ma;
-    map<int,int>mb;
-    for(int i=0;i<n;i++){
-        ma[aa[i]]++;
-        mb[bb[i]]++;
+    int n;
+    cin>>n;
+    vi nodes[n+1];
+    for(int i=0;i<n-1;i++){
+        int u,v;
+        cin>>u>>v;
+        nodes[u].push_back(v);
+        nodes[v].push_back(u);
     }
-   vi ans_a;
-
-
-    for(auto it:ma){
-        if(it.second==2){
-            ans_a.push_back(it.first);
-            ans_a.push_back(it.first);
-            if(ans_a.size()==2*k){
-                break;
-            }
-            
+    vi tin(n+1);
+    vi tout(n+1);
+    int tt=0;
+    vli child(n+1,0);
+    function<void(int ,int)>dfs=[&](int u,int p){
+        if(nodes[u].size()==1 && u>1)child[u]=1;
+        tin[u]=tt;
+        tt++;
+        for(int v:nodes[u]){
+            if(v==p)continue;
+            dfs(v,u);
+            child[u]+=child[v];
         }
-    }
-    vi ans_b;
-    for(auto it:mb){
-        if(it.second==2){
-            ans_b.push_back(it.first);
-            ans_b.push_back(it.first);
-            if(ans_b.size()==2*k){
-                break;
-            }
-        }
-    }
-    if(ans_a.size()==2*k && ans_b.size()==2*k){
-        for(auto it:ans_a){
-            cout<<it<<" ";
-            cout<<endl;
-        }
-        for(auto it:ans_b){
-            cout<<it<<" ";
-            cout<<endl;
-        }
-        return;
-    }
-    for(auto it:ma){
-        if(it.second==1){
-            ans_a.push_back(it.first);
-            ans_b.push_back(it.first);
-            if(ans_a.size()==2*k){
-                break;
-            }
-        }
-    }
-    for(auto it:ans_a){
-        cout<<it<<" ";
-    }
-    cout<<endl;
+        tout[u]=tt;
+        tt++;
 
-    for(auto it:ans_b){
-        cout<<it<<" ";
-    }
-    cout<<endl;
+    };
+    function <bool(int ,int)> isp = [&](int u , int v){
+        return tin[u]<=tin[v] && tout[u]>=tout[v];
 
+    };
+    dfs(1,0);
+    int q;
+    cin>>q;
+    while (q--)
+    {
+        int a, b;
+        cin>>a>>b;
+        cout<<child[a]*child[b]<<"\n";
+        /* code */
+    }
+    
+    
 
    
 };
@@ -162,18 +136,6 @@ int32_t main()
     // cerr << "is it enough bitchh..?  " << elapsed.count() * 1e-9 << " seconds.\n";
     return 0;
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
