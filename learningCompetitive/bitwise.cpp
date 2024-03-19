@@ -172,5 +172,5 @@ int main()
 
     int c = leftShift(a);
     cout << getBinary(c) << endl;
-    cout << c << endl;
+    cout << c <<"\n";
 }
