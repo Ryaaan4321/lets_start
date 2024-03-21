@@ -1,6 +1,6 @@
 #include <iostream>
 #include <vector>
-#include <algorithm> // for std::sort
+#include <algorithm> 
 #include <utility>
 #include <bits/stdc++.h> // for std::pair, std::make_pair
 /*And one day evrything got changed and he became his own companion;*/
