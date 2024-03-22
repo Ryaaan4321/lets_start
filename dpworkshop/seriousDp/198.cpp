@@ -6,26 +6,22 @@ using namespace std;
 class Solution
 {
 public:
-    int n;
     int dp[101];
-    int solve(vector<int> &nums, int i, int n)
+    int n;
+    int solve(int idx, vector<int> &nums, int n)
     {
-        if (i >= nums.size())
-            return 0;
-        if (dp[i] != -1)
+        if (idx >= n)
         {
-            return dp[i];
+            return 0;
         }
-        /*
-        so we have a roober here who wants to steal the money
-        and the condition is he cant steal the money from th adjacnet
-        houses so we have a option either he chooses to steal money
-        from that house either skip tht house*/
+        if (dp[idx] != -1)
+        {
+            return dp[idx];
+        }
+        int take = nums[idx] + solve(idx + 2, nums, n);
+        int skip = solve(idx + 1, nums, n);
 
-        int take = nums[i] + solve(nums, i + 2, n); // conditon where he choose to take that house
-        int skip = solve(nums, i + 1, n);           // condition where he chooses to skip that house;
-
-        return dp[i] = max(skip, take);
+        return dp[idx] = max(take, skip);
     }
     int rob2(vector<int> &nums)
     {
@@ -74,6 +70,6 @@ public:
     {
         n = nums.size();
         memset(dp, -1, sizeof(dp));
-        return solve(nums, 0, n);
+        return solve(0, nums, n);
     }
 };
