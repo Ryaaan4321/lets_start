@@ -3,7 +3,7 @@
 #include <algorithm> 
 #include <utility>
 #include<math.h>
-#include <bits/stdc++.h> 
+#include <bits/stdc++.h>
 /*And one day evrything got changed and he became his own companion;*/
 
 using namespace std;
