@@ -10,13 +10,13 @@ public:
     int m;
     int solve(int i, int j, vector<vector<int>> &nums, vector<vector<int>> dp)
     {
-        if (i > n && j > m)
+        if (i > n )
         {
             return 0;
         }
-        if (i == n - 1 && j == m - 1)
+        if (i == n - 1 )
         {
-            return 1;
+            return nums[i][j];
         }
         if (dp[i][j] != -1)
         {
@@ -25,14 +25,14 @@ public:
         int down = nums[i][j] + solve(i + 1, j, nums, dp);
         int diagonal = nums[i][j] + solve(i + 1, j + 1, nums, dp);
 
-
-        return dp[i][j]=min(down,diagonal);
+        return dp[i][j] = min(down, diagonal);
     }
     int minimumTotal(vector<vector<int>> &nums)
     {
-        n=nums.size();
-        m=nums[0].size();
+        n = nums.size();
         
+        vector<vector<int>> dp(n, vector<int>(n, -1));
+        return solve(0, 0, nums, dp);
     }
 };
 int main()
