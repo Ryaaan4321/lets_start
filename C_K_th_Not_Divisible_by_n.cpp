@@ -89,10 +89,23 @@ template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i
 /*time se badi koi investment ni phir fark ni padta ki pesha ky hai*/
 
 
-void galat_Karam()
-{
-
-};
+void galat_Karam() {
+    int n;
+    int k;
+    cin>>n;
+    cin>>k;
+    int lo = 0, hi = 2e18;
+    while (lo < hi) {
+        int mid = lo + (hi - lo) / 2;
+        int cnt = mid - mid / n;
+        if (cnt >= k) {
+            hi = mid;
+        } else {
+            lo = mid + 1;
+        }
+    }
+    cout<<lo<<endl;
+}
 
 int32_t main()
 {
