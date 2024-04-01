@@ -8,9 +8,10 @@ class Solution
 {
 public:
     int dp[1002];
+    int n;
     int solve(int idx, vector<int> &cost)
     {
-        int n = cost.size();
+        n = cost.size();
         if (idx >= n)
         {
             return 0;
@@ -28,7 +29,7 @@ public:
     }
     int minCostClimbingStairs(vector<int> &cost)
     {
-        int n=cost.size();
+        n=cost.size();
         memset(dp, -1, sizeof(dp));
         return min(solve(0, cost),solve(1,cost));
         /*becuase we can start from either from the idx 1 or either from the idx2;*/
