@@ -2,7 +2,9 @@
 #include <algorithm>
 
 using namespace std;
+
 constexpr long long modVal = 1000000007;
+
 
 class Solution
 {
