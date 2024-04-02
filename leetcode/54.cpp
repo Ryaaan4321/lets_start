@@ -47,6 +47,7 @@ public:
                 {
                     ans.push_back(matrix[down][i]);
                 }
+                down--;
             }
             if (id == 3)
             {
@@ -54,6 +55,7 @@ public:
                 {
                     ans.push_back(matrix[i][left]);
                 }
+                left++;
             }
             id = (id + 1) % 4;
         }
