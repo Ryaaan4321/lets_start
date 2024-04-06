@@ -9,11 +9,11 @@ class Solution
     int dp[1001][1001];
     int solve(int i, int j, string s, string t)
     {
-        if (i == 0)
+        if (i == s.size())
         {
             return 0;
         }
-        if (j == 0)
+        if (j == t.size())
         {
             return 1;
         }
@@ -33,7 +33,7 @@ class Solution
         memset(dp, -1, sizeof(dp));
         int n = s.size();
         int m = t.size();
-        return solve(n - 1, m - 1, s, t);
+        return solve(0, 0, s, t);
     }
     int numsDistinct(string s, string t)
     {

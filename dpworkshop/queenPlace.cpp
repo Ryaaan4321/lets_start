@@ -57,8 +57,8 @@ int rec(int level)
 void solve()
 {
     cin >> n;
-    memset(queen,-1,sizeof(queen));
-    cout<<rec(0)<<endl;
+    memset(queen, -1, sizeof(queen));
+    cout << rec(0) << endl;
 };
 signed main()
 {
