@@ -53,4 +53,28 @@ public:
         }
         return ans;
     }
+    void dfs(TreeNode *root, int level, vector<int> &res)
+    {
+        if (root == NULL)
+        {
+            return;
+        }
+        if (res.size() == level)
+        {
+            res.push_back(root->val);
+        }
+        dfs(root->right, level + 1, res);
+        dfs(root->left, level + 1, res);
+    };
+    vector<int> rightSideView2(TreeNode *root)
+    {
+        vector<int> ans;
+
+        if (root == NULL)
+        {
+            return ans;
+        }
+        dfs(root, 0, ans);
+        return ans;
+    }
 };
