@@ -8,6 +8,16 @@
 
 using namespace std;
 
+namespace __algorithm {
+    template <typename T> void dedup(vector<T> &v) { sort(all(v)); v.erase(unique(all(v)), v.end()); }
+    template <typename T> typename vector<T>::const_iterator find(const vector<T> &v, const T &x) { auto it = lower_bound(all(v), x); return it != v.end() && *it == x ? it : v.end(); }
+    template <typename T> size_t index(const vector<T> &v, const T &x) { auto it = find(v, x); assert(it != v.end() && *it == x); return it - v.begin(); }
+    template <typename I> struct _reversed_struct { I &v_; explicit _reversed_struct(I &v) : v_{v} {} typename I::reverse_iterator begin() const { return v_.rbegin(); } typename I::reverse_iterator end() const { return v_.rend(); } };
+    template <typename I> _reversed_struct<I> reversed(I &v) { return _reversed_struct<I>(v); }
+}
+using namespace __algorithm;
+
+
 /*debug macro starts here*/
 int recur_depth = 0;
 #ifdef DEBUG
@@ -48,6 +58,21 @@ inline int msb(ll n) { for (int i = 33; i >= 0; i--) { if (n & (1ll << i)) retur
 inline ll nC2(ll n) { return (n * (n - 1)) / 2; }
 inline ll binary_exp(ll a, ll b) { ll ans = 1; while (b) { if (b & 1) ans = ans * a % mod; a = a * a % mod; b >>= 1; } return ans; }
 
+mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
+
+template<class T> void _print(T t){ cerr << t;}
+template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
+template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
+template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
+template <class T, class V> void _print(pair <T, V> p) {cerr << "{"; _print(p.fi); cerr << ","; _print(p.se); cerr << "}";}
+template <class T> void _print(vector <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T> void _print(set <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T> void _print(multiset <T> v) {cerr << "[ "; for (T i : v) {_print(i); cerr << " ";} cerr << "]";}
+template <class T, class V> void _print(map <T, V> v) {cerr << "[ "; for (auto i : v) {_print(i); cerr << " ";} cerr << "]";}
+/*time se badi koi investment ni phir fark ni padta ki pesha ky hai*/
+
+
+
 /*
 ----------------------------------------------- THINGS TO REMEMBER ----------------------------------------------------------------
 --------------------- TLE : INFINITE LOOP  ,OR CHECK THE CONSTRAINTS AND THE LOOPS--------------------------------------------------------------------------------
@@ -65,32 +90,25 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 */
 
-mt19937_64 RNG(chrono::steady_clock::now().time_since_epoch().count());
-template<typename T> inline auto sqr (T x) -> decltype(x * x) {return x * x;}
-template<typename T1, typename T2> inline bool umx (T1& a, T2 b) {if (a < b) {a = b; return 1;} return 0;}
-template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a = b; return 1;} return 0;}
-/*time se badi koi investment ni phir fark ni padta ki pesha ky hai*/
-
 
 void galat_Karam()
 {
     int n;
     cin>>n;
-    vi a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
+    while (n%11!=0)
+    {
+        n-=111;
+        if(n<0){
+            no;
+            return;
+        }
+        /* code */
     }
-    int ans1=0;
-    int ans2=0;
-    for(int i=0;i<n;i+=2){
-        ans1+=a[i];
-    }
-    for(int i=1;i<n;i+=2){
-        ans2+=a[i]*2;
-    }
-    cout<<ans1+ans2<<endl;
-   
+    yes;
+    
+
 };
+/*you gotta be almost insane to your craft - Sir mcgregor*/
 
 int32_t main()
 {
@@ -108,46 +126,3 @@ int32_t main()
     return 0;
     /*mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -74,21 +74,6 @@ template<typename T1, typename T2> inline bool umn (T1& a, T2 b) {if (b < a) {a 
 
 void galat_Karam()
 {
-    int n;
-    cin>>n;
-    vi a(n);
-    for(int i=0;i<n;i++){
-        cin>>a[i];
-    }
-    int ans1=0;
-    int ans2=0;
-    for(int i=0;i<n;i+=2){
-        ans1+=a[i];
-    }
-    for(int i=1;i<n;i+=2){
-        ans2+=a[i]*2;
-    }
-    cout<<ans1+ans2<<endl;
    
 };
 
@@ -108,46 +93,3 @@ int32_t main()
     return 0;
     /*mene time lagya koi na bola mujhe  laga reh to mene khud ko bola bas tu apna saga reh ar laga reh*/
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

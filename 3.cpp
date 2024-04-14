@@ -80,15 +80,27 @@ void galat_Karam()
     for(int i=0;i<n;i++){
         cin>>a[i];
     }
-    int ans1=0;
-    int ans2=0;
-    for(int i=0;i<n;i+=2){
-        ans1+=a[i];
+    int max=INT_MIN;
+    int idx=-1;
+    for(int i=0;i<n;i++){
+        if(a[i]>max){
+            max=a[i];
+            idx=i;
+
+        }
     }
-    for(int i=1;i<n;i+=2){
-        ans2+=a[i]*2;
+    int ans=0;
+    for(int i=0;i<a.size();i++){
+        if(idx==0){
+            ans=a[0]*2;
+        }else{
+            for(int i=0;i<idx-1;i++){
+                ans+=a[i];
+                ans+=2*a[idx];
+            }
+        }
     }
-    cout<<ans1+ans2<<endl;
+    cout<<ans<<endl;
    
 };
 
