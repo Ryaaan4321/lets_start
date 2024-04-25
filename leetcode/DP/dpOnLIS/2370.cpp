@@ -29,6 +29,37 @@ public:
             dp[idx][prev_idx] = solve(idx + 1, prev_idx, k, n, s, dp);
         }
     }
+    int longestIdealString2(string s,int k){
+        int res=0;  
+        int n=s.length();
+        vector<int>dp(n+1,1);
+        for(int i=0;i<n;i++){
+            for(int j=i-1;j>=0;j--){
+                if(abs(s[i]-s[j]<=k)){
+                    dp[i]=max(res,dp[j]+1);
+                }
+            }
+            res=max(res,dp[i]);
+        }
+    }
+    int longestIdelString3(string s ,int k){
+        int n=s.length();
+        int res=0;
+        vector<int>dp(26,0);
+        for(int i=0;i<n;i++){
+            int curr_char=s[i]-'a';
+            int left=max(0,curr_char-k);
+            int right=min(26,curr_char+k);
+            int longest=0;
+            for(int j=left;j<=right;j++){
+                longest=max(longest,dp[j]);
+            }
+            dp[curr_char]=max(dp[curr_char],longest);
+            res=max(res,dp[curr_char]);
+        }
+        return res;
+    }
+
     int longestIdealString(string s, int k)
     {
         int n = s.length();
