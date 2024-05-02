@@ -7,35 +7,30 @@ using namespace std;
 class Solution
 {
 public:
-    bool fuc(vector<int> adj[], int u, vector<bool> &vis, vector<bool> &inrecursion)
-    {
-        vis[u] = true;
-        inrecursion[u] = true;
-
-        for (auto &v : adj[u])
-        {
-            if (!vis[v] && fuc(adj, v, vis, inrecursion))
-            {
-                return 1;
-            }
-            else if (inrecursion[v] == 1)
-            {
+    bool dfs(int u,vector<int> adj[],vector<int> &vis,vector<int> &pathvis){
+         vis[u]=1;
+         pathvis[u]=1;
+         for(auto &v:adj[u]){
+            if(!vis[v]){
+                if(dfs(v,adj,vis,pathvis)==true){
+                    return 1;
+                }
+            }else if(pathvis[v]==1){
                 return 1;
             }
         }
-        inrecursion[u] = 0;
-        return false;
+        pathvis[u]=0;
+        return 0;
     }
-    bool isCyclic(vector<int> adj[], int V)
+    bool isCyclic(int V, vector<int> adj[])
     {
-        vector<bool> visited(V, 0);
-        vector<bool> inrecurison(V, 0);
-
-        for (int i = 0; i < V; i++)
-        {
-            if (!visited[i] && fuc(adj, i, visited, inrecurison))
-            {
-                return 1;
+        vector<int> vis(V,0);
+        vector<int>pathvis(V,0);
+        for(int i=0;i<V;i++){
+            if(!vis[i]){
+                if(dfs(i,adj,vis,pathvis)==1){
+                    return 1;
+                }
             }
         }
         return 0;
