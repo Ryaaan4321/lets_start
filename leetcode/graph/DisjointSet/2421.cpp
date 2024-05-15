@@ -37,6 +37,12 @@ public:
         }
     }
 };
+/*  i still need a lot of work to put in so that i can undestand this type of question in a one go 
+    believing in myslef and my work it will happen not today bt definetly one day 
+
+    because talha anjum  said - koi ni bola mujhe laga reh to mene khd ko bola bas to apna sga rh
+    laga reh 
+*/
 class Solution {
 public:
     int numberOfGoodPaths(vector<int>& vals, vector<vector<int>>& edges) {
