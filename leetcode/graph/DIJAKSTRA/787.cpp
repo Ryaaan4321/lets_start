@@ -11,6 +11,7 @@ public:
                        vector<pair<int, pair<int, int>>>,
                        greater<pair<int, pair<int, int>>>>
             pq;
+        
         pq.push({0, {src, 0}});
         vector<pair<int, int>> adj[n];
         for (auto it : grid) {
