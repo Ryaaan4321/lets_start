@@ -24,6 +24,7 @@ public:
     {
         int n = a.size();
         TreeNode *node = new TreeNode(a[0]);
+        int a[]={};
         for (int i = 1; i < n; i++)
         {
             if (a[i] > node->val)
