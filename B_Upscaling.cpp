@@ -93,9 +93,7 @@ If a is not divisible by b, the result is the remainder when a is divided by b.
 
 void galat_Karam()
 {
-    int n;
-    cin>>n;
-    int fnal=2*n+2*n;
+    
     
 
 };
