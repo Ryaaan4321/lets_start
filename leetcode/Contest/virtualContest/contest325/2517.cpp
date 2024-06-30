@@ -1,11 +1,12 @@
 #include<bits/stdc++.h>
+#include<algorithm>
+#include<math.h>
 
 using namespace std;
 
-
 class Solution {
 public:
-    int minimumArea(vector<vector<int>>& grid) {
+    int maximumTastiness(vector<int>& a, int k) {
         
     }
 };
