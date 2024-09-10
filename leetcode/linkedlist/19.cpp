@@ -32,5 +32,15 @@ class Solution{
         slow->next=slow->next->next;
         return tmp->next;
     }
+    int removeDuplicates(vector<int>& nums) {
+       set<int>st(nums.begin(),nums.end());
+       return st.size();
+       vector<int>ans((int)st.size());
+       for(int i=0;i<st.size();i++){
+        ans.push_back(*st.rbegin());
+        st.erase(*st.rbegin());
+       }
+    //    return 1; glt hai dekh liyoek bar
+    }
 
 };
