@@ -124,37 +124,38 @@ int girls[111];
 int boys[111];
 int n;
 int m;
+ vector<int> findUnion(int arr1[], int arr2[], int n, int m)
+    {
+       set<int>st;
+       vector<int>a;
+       for(int i=0;i<n;i++){
+           st.insert(arr1[i]);
+       }
+       for(int i=0;i<m;i++){
+           st.insert(arr2[i]);
+       }
+       for(int it:st){
+           a.push_back(it);
+       }
+    //    reverse(a.begin(),a.end());
+       return a;
+}
 void galat_Karam(){
-    cin>>m;
-    for(int i=0;i<m;i++){
-        cin>>boys[i];
-    }
-    cin>>n;
+    cin>>n;cin>>m;
+    int arr1[n];
+    int arr2[m];
     for(int i=0;i<n;i++){
-        cin>>girls[i];
+        cin>>arr1[i];
     }
-    sort(boys,boys+m);
-    sort(girls,girls+n);
-
-    int ans=0;
-    for(int i=0,j=0;i<m && j<n;i++){
-        while (j<n && girls[j]+1<boys[i])
-        {
-            j++;
-            /* code */
-        }
-        if(j==n)break;
-        if(girls[j]>=boys[i]-1 && girls[j]<=boys[i]+1){
-            ans++;
-            j++;
-        }
-        
+    for(int i=0;i<m;i++){
+        cin>>arr2[i];
     }
-    cout<<ans<<endl;
-
-
+    vector<int> ans=findUnion(arr1,arr2,n,m);
+    for(int i=0;i<ans.size();i++){
+        cout<<ans[i]<<' ';
+    }
+    cout<<endl;
 };
-
 int32_t main()
 {
     auto begin = std::chrono::high_resolution_clock::now();
@@ -162,7 +163,7 @@ int32_t main()
     cin.tie(0);
     // w(t)
     // {
-    galat_Karam();
+   galat_Karam();
     // }
 
     // auto end = std::chrono::high_resolution_clock::now();
