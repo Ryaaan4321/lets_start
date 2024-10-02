@@ -5,19 +5,17 @@
 using namespace std;
 class Trie {
 public:
+    static const int n=26;
     struct TrieNode { 
-        TrieNode *children[26]; 
+        TrieNode *children[n]; 
         bool isEndOfWord; 
+        int len=0;
     };
     TrieNode* getNode() {
-        TrieNode* newNode = new TrieNode();
-        newNode->isEndOfWord = false;
-        
-        for (int i = 0; i < 26; i++) {
-			newNode->children[i] = NULL;
-		}
-        
-        return newNode;
+        TrieNode* newnode = new TrieNode();
+        newnode->isEndOfWord = false;
+        memset(newnode,0,sizeof(newnode));
+        return newnode;
     }
     /** Initialize your data structure here. */
     TrieNode* root;
@@ -49,6 +47,10 @@ public:
             pointer = pointer->children[index]; 
         }
         return (pointer != NULL && pointer->isEndOfWord); 
+        // if(pointer!=NULL && pointer->isEndOfWord==true){
+        //     return true;
+        // }
+        // return false;
     }
     /** Returns if there is any word in the trie that starts with the given prefix. */
     bool startsWith(string prefix) {
