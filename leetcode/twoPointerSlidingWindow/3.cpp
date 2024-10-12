@@ -56,4 +56,22 @@ public:
         }
         return ans;
     }
+   int lengthOfLongestSubstring(string s) {
+        int hash[255]={-1};
+        int cnt=0;int mcnt=0;
+        int l=0;int r=0;
+        while(r<(int)s.length()){
+            if(hash[s[r]]!=-1){
+                if(hash[s[r]]>=l){
+                    l=max(hash[s[r]]+1,l);
+                    cnt=r-l+1;
+                    mcnt=max(cnt,mcnt);
+                }
+            }else{
+                hash[s[r]]++;
+                r++;
+            }
+        }
+        return mcnt;
+    }
 };
