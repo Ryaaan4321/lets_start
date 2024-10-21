@@ -38,4 +38,31 @@ public:
         dfs(root, maxi);
         return maxi;
     }
+     int maxPathSum(TreeNode *root)
+    {
+        queue<TreeNode*>q;
+        q.push(root);
+        int umx=0;
+        while(!q.empty()){
+           int sz=q.size();
+           int sm=0;
+           while (sz--)
+           {
+             auto node=q.front();
+             q.pop();
+             int lsm=0;int rsm=0;
+             if(node->left){
+                lsm=max(0,node->left->val);
+                q.push(node->left);
+             }
+             if(node->right){
+                rsm=max(0,node->right->val);
+                q.push(node->right);
+             }
+             sm=max(sm,lsm+rsm+node->val);
+           }
+           umx=max(sm,umx);
+        }
+        return umx;
+    }
 };
