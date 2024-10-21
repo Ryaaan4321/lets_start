@@ -13,17 +13,13 @@ public:
         int result=0;
         for(int &num:nums){
             currsum+=num;
-
             int remaningsum=currsum-goal;
-
             if(map.find(remaningsum)!=map.end()){
                 result+=map[remaningsum];
 
             }
             map[currsum]++;
         }
-        return result;
-
-        
+        return result;   
     }
 };
