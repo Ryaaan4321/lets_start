@@ -4,11 +4,6 @@
 
 using namespace std;
 
-#include<bits/stdc++.h>
-#include<algorithm>
-#include<math.h>
-
-using namespace std;
 
 struct TreeNode{
     int val;
@@ -23,51 +18,49 @@ struct TreeNode{
 class Solution {
 public:
     TreeNode* replaceValueInTree(TreeNode* root) {
-       queue<TreeNode*>q;
-       q.push(root);
-       vector<int>levelsum;
-       while (!q.empty())
-       {
-        int sz=q.size();
-        int currsum=0;
-        while(sz--){
-        TreeNode* node=q.front();
-        q.pop();
-        currsum+=node->val;
-        if(node->left){
-            q.push(node->left);
-        }
-        if(node->right){
-            q.push(node->right);
-        }
-        }
-        levelsum.push_back(currsum);
-       }
-       for(int i=0;i<levelsum.size();i++){
-        cout<<levelsum[i]<<endl;
-       }
-       q.push(root);
-       int level=1;
-       root->val=0;
-       while(!q.empty()){
-        int sz=q.size();
-        while (sz--)
-        {
-            TreeNode* node=q.front();
-            q.pop();
-            int siblingsum=(node->left ? node->left->val : 0) + (node->right ? node->right->val : 0);
-            if(node->left){
-                node->left->val=levelsum[level]-siblingsum;
-                q.push(node->left);
+        queue<TreeNode*> q;
+        q.push(root);
+        vector<int> levelsum;
+        while (!q.empty()) {
+            int sz = q.size();
+            int currsum = 0;
+            while (sz--) {
+                TreeNode* node = q.front();
+                q.pop();
+                currsum += node->val;
+                if (node->left) {
+                    q.push(node->left);
+                }
+                if (node->right) {
+                    q.push(node->right);
+                }
             }
-            if(node->right){
-                node->right->val=levelsum[level]-siblingsum;
-                q.push(node->right);
-            }
+            levelsum.push_back(currsum);
         }
-        level++;
-        
-       }
-       return root;
+        for (int i = 0; i < levelsum.size(); i++) {
+            cout << levelsum[i] << endl;
+        }
+        q.push(root);
+        int level = 1;
+        root->val = 0;
+        while (!q.empty()) {
+            int sz = q.size();
+            while (sz--) {
+                TreeNode* node = q.front();
+                q.pop();
+                int siblingsum = (node->left ? node->left->val : 0) +
+                                 (node->right ? node->right->val : 0);
+                if (node->left) {
+                    node->left->val = levelsum[level] - siblingsum;
+                    q.push(node->left);
+                }
+                if (node->right) {
+                    node->right->val = levelsum[level] - siblingsum;
+                    q.push(node->right);
+                }
+            }
+            level++;
+        }
+        return root;
     }
 };
