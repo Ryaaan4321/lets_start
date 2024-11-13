@@ -1,1 +1,0 @@
-{"name":"Local: pehla","url":"c:\\Users\\aryan\\Desktop\\cphere\\leetcode\\pehla.cpp","tests":[{"id":1709390285214,"input":"5 10\n2 11 10 1 3","output":"2"},{"id":1709390367795,"input":"5 20\n1 1 2 4 9","output":"4"}],"interactive":false,"memoryLimit":1024,"timeLimit":3000,"srcPath":"c:\\Users\\aryan\\Desktop\\cphere\\leetcode\\pehla.cpp","group":"local","local":true}
