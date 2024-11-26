@@ -31,3 +31,5 @@ public:
         return check(n) & 1 ? 1 : 0;
     }
 };
+
+// 1510
