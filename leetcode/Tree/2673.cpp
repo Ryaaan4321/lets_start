@@ -6,16 +6,16 @@ using namespace std;
 
 class Solution {
 public:
-    int fucc(int i,int n,vector<int>&a,int ans){
+    int ans=0;
+    int fucc(int i,int n,vector<int>&a){
         if(i>n)return 0;
-        int left=fucc(2*i+1,n,a,ans);
-        int right=fucc(2*i+2,n,a,ans);
+        int left=fucc(i*2,n,a);
+        int right=fucc(i*2+1,n,a);
         ans+=abs(left-right);
-        return a[i]+max(left,right);
+        return a[i-1]+max(left,right);
     }
     int minIncrements(int n, vector<int>& cost) {
-        int ans=0;
-        fucc(1,n,cost,ans);
+        fucc(1,n,cost);
         return ans;
     }
 };
