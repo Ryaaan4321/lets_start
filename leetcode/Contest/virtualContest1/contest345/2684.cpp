@@ -9,44 +9,61 @@ class Solution {
         int dr[3]={-1,0,1};
         int dc[3]={+1,1,1};
         bool isvalid(int i,int j,int n,int m){
-            return i>=0 && i<n && j>=0 && j<n;
+            return i>=0 && i<n && j>=0 && j<m;
         };
-        int mx(int i,int j,vector<vector<int>>&grid,vector<vector<bool>>&vis){
-            int n=grid.size();
-            int m=grid[0].size();
-            vis[i][j]=1;
+        int max_Moves(vector<vector<int>>& grid) {
+            int n=grid.size();int m=grid[0].size();int ans=0;
+            vector<vector<bool>>vis(n,vector<bool>(m,0));
             queue<pair<int,pair<int,int>>>q;
-            int ans=INT_MIN;
-            q.push({grid[i][j],{i,j}});
-            while (!q.empty())
-            {
-                int cnt=0;
-                auto node=q.front();
-                q.pop();
-                int val=node.first;
-                int i_=node.second.first;
-                int j_=node.second.second;
-                cnt++;
-                if(i_==n-1 && j_==m-1){
-                  ans=max(ans,cnt);
-                  return ans;
-                }
-                for(int k=0;k<3;k++){
-                    int ni=i_+dr[k];
-                    int nj=j_+dc[k];
-                    if(grid[ni][nj]>grid[i_][j_] && !vis[ni][nj]){
-                        q.push({grid[ni][nj],{ni,nj}});
-                        vis[ni][nj]=true;
+            for(int i=0;i<n;i++){
+                q.push({0,{i,0}});
+                vis[i][0]=1;
+            }
+            while(!q.empty()){
+                int sz=q.size();
+                while (sz--)
+                {
+                    auto node=q.front();
+                    q.pop();
+                    int row=node.second.first;
+                    int col=node.second.second;
+                    int cnt=node.first;
+                    ans=max(cnt,ans);
+                    for(int i=0;i<3;i++){
+                        int nrow=row+dr[i];
+                        int ncol=col+dc[i];
+                        if(isvalid(nrow,ncol ,n,m) && grid[nrow][ncol]>grid[row][col] && !vis[nrow][ncol]){
+                            q.push({cnt+1,{nrow,ncol}});
+                            vis[nrow][ncol]=1;
+                        }
                     }
                 }
+                
             }
             return ans;
-            
         }
-        int maxMoves(vector<vector<int>>& grid) {
+        int fucc(int row,int col,vector<vector<int>>&grid,vector<vector<int>>&dp){
             int n=grid.size();int m=grid[0].size();
-            vector<vector<bool>>vis(n,vector<bool>(m,0));
-            int ans=mx(0,0,grid,vis);
+            if(dp[row][col]!=-1){
+                return dp[row][col];
+            }
+            int max_moves=0;
+            for(int i=0;i<3;i++){
+                int newrow=row+dr[i];
+                int newcol=col+dc[i];
+                if(isvalid(newrow,newcol,n,m) && grid[row][col]<grid[newrow][newcol]){
+                    max_moves=max(max_moves,1+fucc(newrow,newcol,grid,dp));
+                }
+            }
+            return dp[row][col]=max_moves;
+        }
+        int maxMoves(vector<vector<int>>&grid){
+            int n=grid.size();int m=grid[0].size();
+            vector<vector<int>>dp(n,vector<int>(m,-1));
+            int ans=0;
+            for(int i=0;i<n;i++){
+                ans=max(ans,fucc(i,0,grid,dp));
+            }
             return ans;
         }
     };
