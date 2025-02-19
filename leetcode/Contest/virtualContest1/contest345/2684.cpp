@@ -66,4 +66,27 @@ class Solution {
             }
             return ans;
         }
-    };
+        int maxMovesS(vector<vector<int>>&grid){
+            int n=grid.size();int m=grid[0].size();
+            vector<vector<int>>dp(n,vector<int>(m,0));
+            for(int i=0;i<n;i++){
+                dp[i][0]=1;
+            }
+            int mx_moves=0;
+            for(int j=1;j<m;j++){
+                for(int i=0;i<n;i++){
+                    if(grid[i][j]>grid[i][j-1] && dp[i][j-1]>0){
+                        dp[i][j]=max(mx_moves,dp[i][j-1]+1);
+                    }
+                    if(i-1>=0 && grid[i][j]>grid[i-1][j-1] && dp[i-1][j-1]>0){
+                        dp[i][j]=max(mx_moves,dp[i-1][j-1]+1);
+                    }
+                    if(i+1<n && grid[i][j]>grid[i+1][j-1] && dp[i+1][j-1]>0){
+                        dp[i][j]=max(mx_moves,dp[i+1][j-1]+1);
+                    }
+                    mx_moves=max(mx_moves,dp[i][j]-1);
+                }
+            }
+            return mx_moves;
+        }
+};
